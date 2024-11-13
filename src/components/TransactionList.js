@@ -67,7 +67,7 @@ function TransactionList() {
 
   const exportToCSV = () => {
     const csvRows = [
-      ["Description", "Amount (€)", "Type", "Category", "Date"],
+      ["Description", "Amount(€)", "Type", "Category", "Date"],
       ...filteredTransactions.map((transaction) => [
         transaction.description,
         transaction.amount.toFixed(2),
