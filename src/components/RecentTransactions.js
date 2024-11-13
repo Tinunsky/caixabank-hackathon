@@ -10,10 +10,7 @@ import {
 } from "@mui/material";
 
 function RecentTransactions({ transactions }) {
-  // Recent transactions
-  // Instructions:
-  // - Sort the transactions by date, showing the most recent first.
-  // - Extract only the last 5 transactions for display.
+
   const recentTransactions = Array.isArray(transactions)
     ? transactions
         .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -39,20 +36,14 @@ function RecentTransactions({ transactions }) {
                 <TableCell>{transaction.description}</TableCell>
                 <TableCell>
                   {transaction.amount.toFixed(2)}{" "}
-                  {/* Format amount to two decimal places */}
                 </TableCell>
                 <TableCell>{transaction.type}</TableCell>
                 <TableCell>{transaction.category}</TableCell>
                 <TableCell>
                   {new Date(transaction.date).toLocaleDateString()}
                 </TableCell>{" "}
-                {/* Format date */}
               </TableRow>
             ))}
-            {/* Instructions:
-                            - Map over the recentTransactions array and render each transaction in a table row.
-                            - For each row, display the transaction's description, amount, type (income/expense), category, and date.
-                            - Ensure that the amount is formatted to two decimal places. */}
           </TableBody>
         </Table>
       </TableContainer>

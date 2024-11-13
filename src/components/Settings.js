@@ -5,10 +5,6 @@ import {
   updateUserSettings,
 } from "../stores/userSettingsStore";
 import {
-  budgetAlertStore,
-  updateBudgetAlert,
-} from "../stores/budgetAlertStore"; // Importar el store de alertas
-import {
   Box,
   Typography,
   Switch,

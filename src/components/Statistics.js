@@ -6,19 +6,16 @@ import { Paper, Typography } from "@mui/material";
 function Statistics() {
   const transactions = useStore(transactionsStore);
 
-  // Filter transactions by 'expense' type
   const expenses = transactions.filter(
     (transaction) => transaction.type === "expense"
   );
 
-  // Get unique dates from expenses
   const uniqueDates = [...new Set(expenses.map((expense) => expense.date))];
   const totalExpenses = expenses?.reduce((total, expense) => total + expense.amount, 0) || 0;
   const averageDailyExpense = uniqueDates?.length
     ? totalExpenses / uniqueDates.length
     : 0; 
 
-  // Find the category with the highest spending
   const categoryExpenses = expenses.reduce((acc, expense) => {
     acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
     return acc;

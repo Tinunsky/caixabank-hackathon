@@ -5,13 +5,8 @@ import {
   Typography,
   CircularProgress,
   Paper,
-  Avatar,
   List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
   TextField,
-  Button,
   Alert,
 } from "@mui/material";
 import { onRenderCallback } from "../utils/onRenderCallback";
@@ -24,7 +19,6 @@ function SupportPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Request implementation and error handling
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -40,17 +34,14 @@ function SupportPage() {
     fetchData();
   }, []);
 
-  // Filter users by search term
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleSearchChange = (event) => {
-    // Update search term
     setSearchTerm(event.target.value);
   };
 
-  // Display loading spinner
   if (loading) {
     return (
       <Box
@@ -94,7 +85,6 @@ function SupportPage() {
           Support Contacts
         </Typography>
 
-        {/* Implement the search bar */}
         <TextField
           label="Search by Name"
           variant="outlined"
@@ -104,7 +94,6 @@ function SupportPage() {
           sx={{ mb: 4 }}
         />
 
-        {/* Implement the support contact list */}
         <Suspense fallback={<CircularProgress />}>
           <Paper sx={{ p: 3, borderRadius: 2, boxShadow: 3 }}>
             <List>

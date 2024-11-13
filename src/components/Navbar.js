@@ -6,10 +6,10 @@ import {
   Drawer,
   Box,
   Button,
-  Badge,
   Avatar,
   Typography,
-} from "@mui/material"; 
+  Switch,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { logout } from "../stores/authStore";
@@ -39,16 +39,16 @@ const NavBarLogged = () => {
 };
 
 const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
-  const [drawerOpen, setDrawerOpen] = useState(false); 
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
-      return; 
+      return;
     }
-    setDrawerOpen(open); 
+    setDrawerOpen(open);
   };
 
   return (
@@ -62,11 +62,7 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
             sx={{ display: { xs: "flex", md: "none" } }}
           >
             <MenuIcon />
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{ ml: 1, color: "#000" }}
-            >
+            <Typography variant="h6" component="span" sx={{ ml: 1 }}>
               <i>CaixaBankNow</i>
             </Typography>
           </IconButton>
@@ -80,6 +76,7 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
               marginLeft: 2,
             }}
           />
+          <Switch onClick={toggleTheme} color="inherit" />
           <Box
             sx={{
               flexGrow: 1,
@@ -126,14 +123,14 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box
           role="presentation"
-          onClick={toggleDrawer(false)} 
+          onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
           sx={{
             width: 250,
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-          }} 
+          }}
         >
           {isAuthenticated ? (
             <NavBarLogged />

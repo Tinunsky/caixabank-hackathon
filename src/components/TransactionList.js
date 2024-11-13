@@ -2,7 +2,6 @@ import React, { useState, useMemo, useCallback } from "react";
 import { useStore } from "@nanostores/react";
 import {
   transactionsStore,
-  addTransaction,
   deleteTransaction as storeDeleteTransaction,
 } from "../stores/transactionStore";
 import {

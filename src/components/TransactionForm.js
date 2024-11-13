@@ -20,14 +20,12 @@ import { UtraReusableSelect } from "./UltraReusableSelect";
 const TransactionForm = React.memo(({ open, transactionToEdit, onClose }) => {
   const transactions = useStore(transactionsStore);
 
-  // Local state variables
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
-  // Implement the function to assign a category based on description keywords
   const assignCategory = (desc) => {
     for (const [category, keywords] of Object.entries(categoryKeywords)) {
       if (keywords.some((keyword) => desc.toLowerCase().includes(keyword))) {
@@ -37,7 +35,6 @@ const TransactionForm = React.memo(({ open, transactionToEdit, onClose }) => {
     return "Other Expenses";
   };
 
-  // Auto-assign a category if adding a new transaction
   useEffect(() => {
     if (transactionToEdit) {
       setDescription(transactionToEdit.description);
@@ -51,10 +48,18 @@ const TransactionForm = React.memo(({ open, transactionToEdit, onClose }) => {
     }
   }, [transactionToEdit, description]);
 
+  const handleOnClose = () => {
+    onClose();
+    setDescription("");
+    setAmount("");
+    setType("");
+    setCategory("");
+    setDate(new Date().toISOString().split("T")[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate that all fields are filled in.
     if (!description || !amount || !type || !category || !date) {
       alert("Please fill in all fields.");
       return;
@@ -79,11 +84,11 @@ const TransactionForm = React.memo(({ open, transactionToEdit, onClose }) => {
       setTransactions([...transactions, transactionData]);
     }
 
-    onClose();
+    handleOnClose();
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={handleOnClose}>
       <Paper elevation={0}>
         <DialogTitle>
           {transactionToEdit ? "Edit Transaction" : "Add Transaction"}

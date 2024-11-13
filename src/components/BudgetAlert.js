@@ -16,10 +16,9 @@ const BudgetAlert = () => {
   const { totalBudgetLimit, categoryLimits } = userSettings;
   const auth = useStore(authStore);
 
-  const totalExpense = transactions.reduce(
-    (sum, transaction) => sum + transaction.amount,
-    0
-  );
+  const totalExpense = transactions
+    .filter((transaction) => transaction.type === "expense")
+    .reduce((sum, transaction) => sum + transaction.amount, 0);
 
   const exceededCategories = calculateExceededCategories(transactions);
 
