@@ -133,7 +133,12 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
           }}
         >
           {isAuthenticated ? (
-            <NavBarLogged />
+            <>
+              <NavBarLogged />
+              <Button onClick={logout} color="inherit">
+                Logout
+              </Button>
+            </>
           ) : (
             <>
               <Button component={Link} to="/login">
