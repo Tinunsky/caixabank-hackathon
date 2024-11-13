@@ -85,7 +85,7 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
               justifyContent: "flex-end",
             }}
           >
-            {isAuthenticated ? (
+            {isAuthenticated && (
               <Box
                 sx={{
                   display: { xs: "none", md: "flex" },
@@ -98,15 +98,6 @@ const Navbar = ({ toggleTheme, isDarkMode, isAuthenticated, user }) => {
                   </Button>
                 </Box>
               </Box>
-            ) : (
-              <>
-                <Button component={Link} to="/login" color="inherit">
-                  Login
-                </Button>
-                <Button component={Link} to="/register" color="inherit">
-                  Register
-                </Button>
-              </>
             )}
 
             {isAuthenticated && <NotificationsButton />}
